@@ -19,6 +19,16 @@ DATA = {
     # можете добавить свои рецепты ;)
 }
 
+def recipe_view(request, dish):
+    dish = dish.lower()
+    print(f"Полученный dish: {dish}")
+    print(f"Список доступных рецептов: {DATA.keys()}")
+    if dish not in DATA:
+        return render(request, 'calculator/index.html', {'error': "Такого рецепта не знаю :("})
+
+    context = {'recipe': DATA[dish]}
+    return render(request, 'calculator/index.html', context)
+
 # Напишите ваш обработчик. Используйте DATA как источник данных
 # Результат - render(request, 'calculator/index.html', context)
 # В качестве контекста должен быть передан словарь с рецептом:
