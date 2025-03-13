@@ -10,8 +10,8 @@
 
 Что необходимо сделать
 
-- В файле `models.py` нашего приложения создаём модель Phone с полями `id`, `name`, `price`, `image`, `release_date`, `lte_exists` и `slug`. Поле `id` — должно быть основным ключом модели.
-- Значение поля `slug` должно устанавливаться слагифицированным значением поля `name`.
+- В файле `models.py` нашего приложения создаём модель Phone с полями `id`, `name`, `price`, `image`, `release_date`, `lte_exists` и `slug`. Поле `id` — должно быть основным ключом модели. 
+- Значение поля `slug` должно устанавливаться слагифицированным значением поля `name`. 
 - Написать скрипт для переноса данных из csv-файла в модель `Phone`.
   Скрипт необходимо разместить в файле `import_phones.py` в методе `handle(self, *args, **options)`.
   Подробнее про подобные скрипты (django command) можно почитать [здесь](https://docs.djangoproject.com/en/3.2/howto/custom-management-commands/) и [здесь](https://habr.com/ru/post/415049/).
