@@ -1,12 +1,13 @@
-from django.urls import path, include
-from rest_framework.routers import DefaultRouter
-from .views import SensorViewSet, MeasurementCreateView
-
-router = DefaultRouter()
-router.register('sensors', SensorViewSet, basename='sensor')
+from django.urls import path
+from django.conf import settings
+from django.conf.urls.static import static
+from .views import CreateGetSensorView, SensorView, UpdateMeasurement
 
 urlpatterns = [
-    path('', include(router.urls)),
-    path('measurements/', MeasurementCreateView.as_view(), name='add-measurement'),  # исправлено
-    # TODO: зарегистрируйте необходимые маршруты
+    path('sensors/', CreateGetSensorView.as_view()),
+    path('sensors/<pk>/', SensorView.as_view()),
+    path('measurements/', UpdateMeasurement.as_view())
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

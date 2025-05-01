@@ -1,0 +1,12 @@
+get http://127.0.0.1:8000/api/sensors/
+ 
+
+
+### Создать новый датчик
+POST http://127.0.0.1:8000/api/sensors/
+Content-Type: application/json
+
+{
+  "name": "ESP33",
+  "description": "Датчик в спальне"
+}
