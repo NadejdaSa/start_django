@@ -59,7 +59,7 @@ jobs:
         with:
           host: 95.163.242.109
           username: root
-          password: ${{ secrets.SSH_KEY }}
+          password: ${{ secrets.sec_KEY }}
           script: |
             cd /opt/djprj
             git pull
