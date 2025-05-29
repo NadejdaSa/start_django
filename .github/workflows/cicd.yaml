@@ -44,7 +44,7 @@ jobs:
         
       - name: Tests
         working-directory: 3.2-crud/stocks_products
-        run: python stocks_products/manage.py test
+        run: python manage.py test
         env:
           PG_USER: ${{ secrets.PG_USER }}
           PG_HOST: ${{ secrets.PG_HOST }}
