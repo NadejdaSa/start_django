@@ -17,6 +17,7 @@ jobs:
           python-version: 3.12
         
       - name: installation requirements
+        working-directory: 3.2-crud/stocks_products
         run: pip install -r requirements.txt
 
       - name: Flake8
