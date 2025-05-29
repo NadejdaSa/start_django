@@ -1,0 +1,24 @@
+name: CI/CD action
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  testing:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+
+      - name: installation python
+        uses: actions/setup-python@v5
+        with:
+          python-version: 3.12
+        
+      - name: installation requirements
+        run: pip install -r requirements.txt
+
+      - name: Flake8
+        run: flake8 stocks_products --exclude migrations --ignore E501,F401,E302,W293,W391,W292
+        
