@@ -50,3 +50,17 @@ jobs:
           PG_HOST: ${{ secrets.PG_HOST }}
           PG_PORT: ${{ secrets.PG_PORT }}
           PG_PASSWORD: ${{ secrets.PG_PASSWORD }}
+  deploy:
+    runs-on: ubuntu-latest
+    needs: testing
+    steps:
+      - name: Deploy
+        uses: appleboy/ssh-action@master
+        with:
+          host: 95.163.242.109
+          username: admin
+          password: admin
+          script: |
+            cd /opt/djprj
+            git pull
+            sudo systemctl gunicorn
