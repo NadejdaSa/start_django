@@ -2,7 +2,7 @@ name: CI/CD action
 
 on:
   push:
-    branches: [master]
+    branches: [video]
 
 jobs:
   testing:
