@@ -7,6 +7,24 @@ on:
 jobs:
   testing:
     runs-on: ubuntu-latest
+    env:
+      PG_USER:${{ secrets.PG_USER }}
+      PG_HOST:${{ secrets.PG_HOST }}
+      PG_PORT:${{ secrets.PG_PORT }}
+      PG_PASSSWORD:${{ secrets.PG_PASSWORD }}
+    services:
+      postgres_nmain:
+        image: postgres:latest
+        env:
+          POSTGRES_USERS: ${{ env.PG_USER }}
+          POSTGRES_PASSWORD: ${{ env.PG_PASSWORD }}
+          POSTGRES_PORTS: ${{ env.PG_PORT }}
+          POSTGRES_HOSTS: ${{ env.PG_HOST}}
+        options:
+          --health-cmd pg_isready
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 5
     steps:
       - name: checkout
         uses: actions/checkout@v2
@@ -24,3 +42,11 @@ jobs:
         working-directory: 3.2-crud/stocks_products
         run: flake8 stocks_products --exclude migrations --ignore E501,F401,E302,W293,W391,W292
         
+      - name: Tests
+        working-directory: 3.2-crud/stocks_products
+        run: python stocks_products/managee.py test
+        env:
+        PG_USER: ${{ secrets.PG_USER }}
+        PG_HOST: ${{ secrets.PG_HOST }}
+        PG_PORT: ${{ secrets.PG_PORT }}
+        PG_PASSSWORD: ${{ secrets.PG_PASSWORD }}
